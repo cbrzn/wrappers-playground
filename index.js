@@ -54,6 +54,8 @@ const tryQuery = async () => {
     },
   };
 
+  console.log("test")
+
   const setResolver = {
     uri,
     query: `mutation {
