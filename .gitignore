@@ -1,1 +1,4 @@
 node_modules
+deployments
+cache
+artifacts

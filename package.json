@@ -4,13 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "deploy": "hardhat deploy --network",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@web3api/client-js": "^0.0.1-prealpha.47",
-    "@web3api/ethereum-plugin-js": "^0.0.1-prealpha.47",
-    "ethers": "^5.4.7"
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-etherscan": "2.1.6",
+    "@nomiclabs/hardhat-waffle": "2.0.1",
+    "@web3api/client-js": "^0.0.1-prealpha.48",
+    "@web3api/ethereum-plugin-js": "^0.0.1-prealpha.48",
+    "ethers": "^5.4.7",
+    "hardhat": "2.6.4",
+    "hardhat-deploy": "0.9.1"
   }
 }

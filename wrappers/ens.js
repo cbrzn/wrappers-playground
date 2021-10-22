@@ -9,11 +9,11 @@ const wallet = new ethers.Wallet(
   provider
 );
 console.log("Instantiating client");
-const uri = "ipfs/Qman9eDBvZjxv1fnBnwUoMG3HgWt2JUxdBis9BVbC91Swb";
+const uri = "ipfs/QmXJu4HTjpwLY5K1MHYwb3aR4dFRWUg4jMVnmY9odYLQuf";
 const resolverAddress = "0x42D63ae25990889E35F215bC95884039Ba354115";
 const registryAddress = "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e";
 const domain = "open.web3api.eth";
-const label = "vergatari0";
+const label = "againx3";
 const subdomain = `${label}.${domain}`;
 const network = "ropsten";
 const fifsRegistrarAddress = "0x99BeF0ec344a354303Bc5F3BB2E7e0a104B1E9f2";
@@ -27,12 +27,11 @@ const tryQuery = async () => {
         domain: $domain
         label: $label
         owner: $owner
-        cid: $cid
         delegatorAddress: $delegatorAddress
         fifsRegistrarAddress: $fifsRegistrarAddress 
         registryAddress: $registryAddress
         resolverAddress: $resolverAddress
-        ttl: $ttl
+        cid: $cid
         connection: { networkNameOrChainId: $network }
         txOverrides: $txOverrides
       )
@@ -45,7 +44,6 @@ const tryQuery = async () => {
       delegatorAddress: "0x6f29952e84051c0eed9f0dc6f360c0893f05414f",
       fifsRegistrarAddress,
       registryAddress,
-      ttl: "0",
       resolverAddress,
       network,
       txOverrides: {
@@ -54,47 +52,45 @@ const tryQuery = async () => {
     },
   };
 
-  console.log("test")
+  // const setResolver = {
+  //   uri,
+  //   query: `mutation {
+  //     setResolver(
+  //       domain: $domain
+  //       resolverAddress: $resolverAddress
+  //       registryAddress: $registryAddress
+  //       connection: {
+  //         networkNameOrChainId: $network
+  //       }
+  //     )
+  //   }`,
+  //   variables: {
+  //     domain: subdomain,
+  //     resolverAddress,
+  //     registryAddress,
+  //     network,
+  //   },
+  // };
 
-  const setResolver = {
-    uri,
-    query: `mutation {
-      setResolver(
-        domain: $domain
-        resolverAddress: $resolverAddress
-        registryAddress: $registryAddress
-        connection: {
-          networkNameOrChainId: $network
-        }
-      )
-    }`,
-    variables: {
-      domain: subdomain,
-      resolverAddress,
-      registryAddress,
-      network,
-    },
-  };
-
-  const register = {
-    uri,
-    query: `mutation {
-      registerSubnodeOwnerWithFIFSRegistrar(
-        label: $label
-        owner: $owner
-        fifsRegistrarAddress: $fifsRegistrarAddress
-        connection: {
-          networkNameOrChainId: $network
-        }
-      )
-    }`,
-    variables: {
-      label,
-      owner: address,
-      fifsRegistrarAddress,
-      network,
-    },
-  };
+  // const register = {
+  //   uri,
+  //   query: `mutation {
+  //     registerSubnodeOwnerWithFIFSRegistrar(
+  //       label: $label
+  //       owner: $owner
+  //       fifsRegistrarAddress: $fifsRegistrarAddress
+  //       connection: {
+  //         networkNameOrChainId: $network
+  //       }
+  //     )
+  //   }`,
+  //   variables: {
+  //     label,
+  //     owner: address,
+  //     fifsRegistrarAddress,
+  //     network,
+  //   },
+  // };
 
   console.log("public address", address);
   const client = await createWeb3ApiClient({
@@ -112,11 +108,9 @@ const tryQuery = async () => {
   // const response = await client.query(setResolver);
   // const response = await client.query(register);
 
-  console.log({ response: JSON.stringify(response, null, 2) });
-  console.log({ errors: JSON.stringify(response.errors, null, 2) });
   return response;
 };
 
 tryQuery()
-  .then(({ data }) => console.log({ data: data }))
+  .then((response) => console.log(response))
   .catch((e) => console.log("Error:", e));
